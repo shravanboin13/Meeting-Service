@@ -14,21 +14,21 @@ import java.util.List;
 public class Booking implements Serializable{
     @Id
     private String id;
-    private Date start,end;
+    private String start,end;
 
-    public Date getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 
@@ -54,7 +54,7 @@ public class Booking implements Serializable{
     private String location;
     private String roomId;
 
-    public Booking(String id, Date beginDate, Date endDate, boolean state, String bookedBy, String summary, String location, String roomId, String eventURL, List<String> attendees) {
+    public Booking(String id, String beginDate, String endDate, boolean state, String bookedBy, String summary, String location, String roomId, String eventURL, List<String> attendees) {
         this.id = id;
         this.start = beginDate;
         this.end = endDate;
