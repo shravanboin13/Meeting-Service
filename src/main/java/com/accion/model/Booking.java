@@ -14,20 +14,53 @@ import java.util.List;
 public class Booking implements Serializable{
     @Id
     private String id;
-    private Date beginDate,endDate;
+    private Date start,end;
+
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getEventURL() {
+        return eventURL;
+    }
+
+    public void setEventURL(String eventURL) {
+        this.eventURL = eventURL;
+    }
+
     private boolean state;
     private String bookedBy;
-    private String summary;
+    private String title;
     private String location;
     private String roomId;
 
     public Booking(String id, Date beginDate, Date endDate, boolean state, String bookedBy, String summary, String location, String roomId, String eventURL, List<String> attendees) {
         this.id = id;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
+        this.start = beginDate;
+        this.end = endDate;
         this.state = state;
         this.bookedBy = bookedBy;
-        this.summary = summary;
+        this.title = summary;
         this.location = location;
         this.roomId = roomId;
         this.eventURL = eventURL;
@@ -47,14 +80,6 @@ public class Booking implements Serializable{
     }
 
 
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
 
     public String getLocation() {
         return location;
@@ -94,21 +119,6 @@ public class Booking implements Serializable{
 
 
 
-    public Date getBeginDate() {
-        return beginDate;
-    }
-
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
 
     public boolean isState() {
         return state;

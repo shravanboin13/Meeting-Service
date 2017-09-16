@@ -8,6 +8,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface BookingRepository extends MongoRepository<Booking,String> {
 
-    Page<Booking> findBySummaryIgnoreCaseContaining(String summary,Pageable pageRequest);
+    Page<Booking> findByTitleIgnoreCaseContaining(String title,Pageable pageRequest);
 
 }
