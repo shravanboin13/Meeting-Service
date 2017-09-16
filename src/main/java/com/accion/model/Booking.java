@@ -7,13 +7,21 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ */
 @Document(collection="booking")
 public class Booking implements Serializable{
-    public String getId() {
-        return id;
-    }
+    @Id
+    private String id;
+    private Date beginDate,endDate;
+    private boolean state;
+    private String bookedBy;
+    private String summary;
+    private String location;
+    private String roomId;
 
-    public Booking(String id, Date beginDate, Date endDate, boolean state, String bookedBy, String summary, String location, String roomId, List<String> attendees) {
+    public Booking(String id, Date beginDate, Date endDate, boolean state, String bookedBy, String summary, String location, String roomId, String eventURL, List<String> attendees) {
         this.id = id;
         this.beginDate = beginDate;
         this.endDate = endDate;
@@ -22,17 +30,23 @@ public class Booking implements Serializable{
         this.summary = summary;
         this.location = location;
         this.roomId = roomId;
+        this.eventURL = eventURL;
         this.attendees = attendees;
     }
+
+    private String eventURL;
+    public String getId() {
+        return id;
+    }
+
+
 
     public void setId(String id) {
         this.id = id;
 
     }
 
-    @Id
-    private String id;
-    private Date beginDate,endDate;
+
 
     public String getSummary() {
         return summary;
@@ -50,11 +64,7 @@ public class Booking implements Serializable{
         this.location = location;
     }
 
-    private boolean state;
-    private String bookedBy;
-    private String summary;
-    private String location;
-    private String roomId;
+
 
     public List<String> getAttendees() {
         return attendees;
