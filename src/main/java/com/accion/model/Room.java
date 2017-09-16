@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 
 @Document(collection="room")
-public class Room extends BaseDomain implements Serializable{
+public class Room  implements Serializable{
     @Id
     private String id;
 

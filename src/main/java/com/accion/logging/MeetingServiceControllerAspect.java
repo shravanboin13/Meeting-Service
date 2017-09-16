@@ -13,22 +13,20 @@ import org.springframework.stereotype.Component;
  * 
  * @author AL1867
  * Create/Modified Date      Ticket number           Modifiedby      Description
- * 06/18/17                   Logging                Shravan         Added logging methods for Dao class
+ * 06/18/17                   Logging                Shravan         Added logging methods for controller class
  */
 
 @Component
 @Aspect
-public class TemplateDaoAspect {
+public class MeetingServiceControllerAspect {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	@Before("execution(* com.accion.dao.*.*(..))")
+	@Before("execution(* com.accion.api.*.*(..))")
     public void logMethodAccessBefore(JoinPoint joinPoint) {
-        log.info("Before DAO method executing: " + joinPoint.getSignature().getName());
+        log.info("Before method executing: " + joinPoint.getSignature().getName());
     }
- @After("execution(* com.accion.dao.*.*(..))")
+ @After("execution(* com.accion.api.*.*(..))")
     public void logMethodAccessAfter(JoinPoint joinPoint) {
-        log.info("After DAO executing method: " + joinPoint.getSignature().getName());
+        log.info("After executing method: " + joinPoint.getSignature().getName());
     }
-    
-
 }
 

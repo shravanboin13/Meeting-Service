@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Component
 @Aspect
-public class TemplateServiceAspect {
+public class MeetingServiceAspect {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     /**
      * This method will log before logging statements for service class methods

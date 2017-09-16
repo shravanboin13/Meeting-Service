@@ -2,10 +2,10 @@
 package com.accion.config;
 
 
-import com.accion.logging.MyAspect;
-import com.accion.logging.TemplateControllerAspect;
-import com.accion.logging.TemplateDaoAspect;
-import com.accion.logging.TemplateServiceAspect;
+import com.accion.logging.MeetingDaoAspect;
+import com.accion.logging.MeetingServiceAspect;
+import com.accion.logging.MeetingServiceControllerAspect;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan(basePackages = {"com.sw.guardian.logging.*"})
+@ComponentScan(basePackages = {"com.accion.logging.*"})
 
 /**
  * 
@@ -24,22 +24,19 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 public class AssetConfig {
 
-@Bean
-    public MyAspect myLogger(){
-        return new MyAspect();
-    }
+
 
     @Bean
-    public TemplateServiceAspect templaateServiceAspect(){
-    	return new TemplateServiceAspect();
+    public MeetingServiceAspect meetingServiceAspect(){
+    	return new MeetingServiceAspect();
     }
     @Bean
-    public TemplateDaoAspect templateDaoAspect(){
-    	return new TemplateDaoAspect();
+    public MeetingDaoAspect meeitngDaoAspect(){
+    	return new MeetingDaoAspect();
     }
     @Bean
-    public TemplateControllerAspect templateControllerAspect(){
-    	return new TemplateControllerAspect();
+    public MeetingServiceControllerAspect templateControllerAspect(){
+    	return new MeetingServiceControllerAspect();
     }
    
 }

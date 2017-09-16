@@ -77,7 +77,7 @@ public class MeetingServiceImpl implements MeetingService {
     public Page<Booking> findByBookingPartialName(String name, int page, int size, String sortBy, String sortOrder) throws Exception {
         CommonUtils commonUtils=new CommonUtils();
         PageRequest pageRequest=commonUtils.getPageDetails(page,size,sortBy,sortOrder);
-        Page<Booking> rooms = bookingRepository.findByNameIgnoreCaseContaining(pageRequest);
+        Page<Booking> rooms = bookingRepository.findBySummaryIgnoreCaseContaining(name ,pageRequest);
         return rooms;
     }
 

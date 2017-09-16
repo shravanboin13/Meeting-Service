@@ -5,9 +5,74 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Document(collection="booking")
-public class Booking extends BaseDomain implements Serializable{
+public class Booking implements Serializable{
+    public String getId() {
+        return id;
+    }
+
+    public Booking(String id, Date beginDate, Date endDate, boolean state, String bookedBy, String summary, String location, String roomId, List<String> attendees) {
+        this.id = id;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.state = state;
+        this.bookedBy = bookedBy;
+        this.summary = summary;
+        this.location = location;
+        this.roomId = roomId;
+        this.attendees = attendees;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+
+    }
+
+    @Id
+    private String id;
+    private Date beginDate,endDate;
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    private boolean state;
+    private String bookedBy;
+    private String summary;
+    private String location;
+    private String roomId;
+
+    public List<String> getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(List<String> attendees) {
+        this.attendees = attendees;
+    }
+
+    private List<String> attendees;
+
+
+
+
+
+
+
+
     public String getRoomId() {
         return roomId;
     }
@@ -16,14 +81,8 @@ public class Booking extends BaseDomain implements Serializable{
         this.roomId = roomId;
     }
 
-    private String roomId;
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
     public Date getBeginDate() {
         return beginDate;
@@ -52,15 +111,7 @@ public class Booking extends BaseDomain implements Serializable{
         this.state = state;
     }
 
-    public Booking(String roomId, int id, Date beginDate, Date endDate, boolean state, String bookedBy, String name) {
-        this.roomId = roomId;
-        this.id = id;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
-        this.state = state;
-        this.bookedBy = bookedBy;
-        this.name = name;
-    }
+
 
     public String getBookedBy() {
         return bookedBy;
@@ -70,18 +121,5 @@ public class Booking extends BaseDomain implements Serializable{
         this.bookedBy = bookedBy;
     }
 
-    @Id
-    private int id;
-    private Date beginDate,endDate;
-    private boolean state;
-    private String bookedBy;
-    private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-}
+   }

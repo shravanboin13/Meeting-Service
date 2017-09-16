@@ -17,7 +17,7 @@ import java.util.Map;
 
 
 /**
- * This class handles rest calls for template services
+ * This class handles rest calls for meetings services
  * @version
  * @author AL1867
  *@since 12-06-2017
@@ -37,28 +37,27 @@ public class MeetingServiceController {
 
 
     /**
-     * This method is used to save library elements into database.
-     * This method accepts library element object as input and stores the library element object into database
+     * This method is used to save rooms into database.
+     * This method accepts room object as input and stores the room element object into database
      *
-     * @return this method returns custom element object
+     * @return this method returns room object
      * @throws Exception
      */
     @RequestMapping(method = RequestMethod.POST, value = "/rooms", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Room> saveCustomElements(@RequestBody Room room) throws Exception {
+    public ResponseEntity<Room> saveRooms(@RequestBody Room room) throws Exception {
         Room roomResult = roomService.saveRooms(room);
         return new ResponseEntity<>(roomResult, HttpStatus.OK);
 
     }
 
     /**
-     * This method is used to fetch library elements from database.
-        * This method accepts elementType(ex:custom ,hierarchy) as input and returns the library element object
-     *
-     * @return this method returns list of custom element object
+     * This method is used to fetch room elements from database.
+
+     * @return this method returns list of room object
      * @throws Exception
      */
     @RequestMapping(method = RequestMethod.GET, value = "/rooms", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Page<Room>> getCustomElements(@RequestParam Map queryMap) throws Exception {
+    public ResponseEntity<Page<Room>> getRooms(@RequestParam Map queryMap) throws Exception {
         int page = Integer.parseInt((String) queryMap.get("page"));
         int size = Integer.parseInt((String) queryMap.get("size"));
         String sortBy = (String) queryMap.get("sortBy");
@@ -69,10 +68,10 @@ public class MeetingServiceController {
     }
 
     /**
-     * This method is used to search library elements from database.
-     * This method accepts last name,elementType(ex:custom ,hierarchy) as input and fetches the library element details from database
+     * This method is used to search rooms from database.
+     * This method accepts last name as input and fetches the library element details from database
      *
-     * @return this method returns list of custom element object
+     * @return this method returns list of room objects
      * @throws Exception
      */
     @RequestMapping(method = RequestMethod.GET, value = "/rooms/search", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -88,10 +87,10 @@ public class MeetingServiceController {
     }
 
     /**
-     * This method is used to find library elements by ID from database.
-     * This method accepts ID as input and fetches the library element details from database
+     * This method is used to find room by ID from database.
+     * This method accepts ID as input and fetches the room details from database
      *
-     * @return this method returns library element object
+     * @return this method returns room object
      * @throws Exception
      */
     @RequestMapping(method = RequestMethod.GET, value = "/rooms/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -101,38 +100,36 @@ public class MeetingServiceController {
     }
 
     /**
-     * This method is used to update library elements .
-     * This method accepts library elements as input and based on id updates the record in the database
+     * This method is used to update rooms .
+     * This method accepts room as input and based on id updates the record in the database
      *
-     * @return this method returns library element object
+     * @return this method returns room
      * @throws Exception
      */
     @RequestMapping(method = RequestMethod.PUT, value = "/rooms", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Room> updateRoomo(@RequestBody Room room) throws Exception {
+    public ResponseEntity<Room> updateRoom(@RequestBody Room room) throws Exception {
         room = roomService.updateRoom(room);
         return new ResponseEntity<>(room, HttpStatus.OK);
     }
 
 
     /**
-     * This method is used to save library elements into database.
-     * This method accepts library element object as input and stores the library element object into database
+     * This method is used to save bookings into database.
+     * This method accepts booking object as input and stores the booking object into database
      *
-     * @return this method returns custom element object
+     * @return this method returns booking object
      * @throws Exception
      */
     @RequestMapping(method = RequestMethod.POST, value = "/bookings", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Booking> saveCustomElements(@RequestBody Booking room) throws Exception {
-        Booking roomResult = roomService.saveBookings(room);
-        return new ResponseEntity<>(roomResult, HttpStatus.OK);
+    public ResponseEntity<Booking> saveBookings(@RequestBody Booking room) throws Exception {
+        Booking bookingResult = roomService.saveBookings(room);
+        return new ResponseEntity<>(bookingResult, HttpStatus.OK);
 
     }
 
     /**
-     * This method is used to fetch library elements from database.
-     * This method accepts elementType(ex:custom ,hierarchy) as input and returns the library element object
-     *
-     * @return this method returns list of custom element object
+     * This method is used to fetch bookings from database.
+     * @return this method returns list of booking object
      * @throws Exception
      */
     @RequestMapping(method = RequestMethod.GET, value = "/bookings", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -141,16 +138,16 @@ public class MeetingServiceController {
         int size = Integer.parseInt((String) queryMap.get("size"));
         String sortBy = (String) queryMap.get("sortBy");
         String sortOrder = (String) queryMap.get("sortOrder");
-        Page<Booking> rooms = roomService.getAllBookings(page, size, sortBy, sortOrder);
-        return new ResponseEntity<Page<Booking>>(rooms, HttpStatus.OK);
+        Page<Booking> bookings = roomService.getAllBookings(page, size, sortBy, sortOrder);
+        return new ResponseEntity<Page<Booking>>(bookings, HttpStatus.OK);
 
     }
 
     /**
-     * This method is used to search library elements from database.
-     * This method accepts last name,elementType(ex:custom ,hierarchy) as input and fetches the library element details from database
+     * This method is used to search bookings from database.
+     * This method accepts  name as input and fetches the booking details from database
      *
-     * @return this method returns list of custom element object
+     * @return this method returns list of booking objects
      * @throws Exception
      */
     @RequestMapping(method = RequestMethod.GET, value = "/bookings/search", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -160,35 +157,35 @@ public class MeetingServiceController {
         int size = Integer.parseInt((String) queryMap.get("size"));
         String sortBy = (String) queryMap.get("sortBy");
         String sortOrder = (String) queryMap.get("sortOrder");
-        Page<Booking> libraryElements = roomService.findByBookingPartialName(name, page, size, sortBy, sortOrder);
-        return new ResponseEntity<Page<Booking>>(libraryElements, HttpStatus.OK);
+        Page<Booking> bookings = roomService.findByBookingPartialName(name, page, size, sortBy, sortOrder);
+        return new ResponseEntity<Page<Booking>>(bookings, HttpStatus.OK);
 
     }
 
     /**
-     * This method is used to find library elements by ID from database.
-     * This method accepts ID as input and fetches the library element details from database
+     * This method is used to find bookings by ID from database.
+     * This method accepts ID as input and fetches the booking  details from database
      *
-     * @return this method returns library element object
+     * @return this method returns booking object
      * @throws Exception
      */
     @RequestMapping(method = RequestMethod.GET, value = "/bookings/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Booking> getBooking(@PathVariable("id") final String id) throws Exception {
-        Booking room = roomService.findOneBooking(id);
-        return new ResponseEntity<>(room, HttpStatus.OK);
+        Booking booking = roomService.findOneBooking(id);
+        return new ResponseEntity<>(booking, HttpStatus.OK);
     }
 
     /**
-     * This method is used to update library elements .
-     * This method accepts library elements as input and based on id updates the record in the database
+     * This method is used to update booking .
+     * This method accepts booking object as input and based on id updates the record in the database
      *
-     * @return this method returns library element object
+     * @return this method returns booking
      * @throws Exception
      */
     @RequestMapping(method = RequestMethod.PUT, value = "/bookings", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Booking> updateRoomo(@RequestBody Booking room) throws Exception {
-        room = roomService.updateBooking(room);
-        return new ResponseEntity<>(room, HttpStatus.OK);
+    public ResponseEntity<Booking> updateBooking(@RequestBody Booking booking) throws Exception {
+        booking = roomService.updateBooking(booking);
+        return new ResponseEntity<>(booking, HttpStatus.OK);
     }
 
 
